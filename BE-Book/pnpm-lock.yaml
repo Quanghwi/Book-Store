@@ -32,6 +32,9 @@ dependencies:
   mongoose:
     specifier: ^7.5.3
     version: 7.5.3
+  mongoose-paginate-v2:
+    specifier: ^1.7.4
+    version: 1.7.4
   nodemon:
     specifier: ^3.0.1
     version: 3.0.1
@@ -1029,6 +1032,11 @@ packages:
       socks: 2.7.1
     optionalDependencies:
       '@mongodb-js/saslprep': 1.1.0
+    dev: false
+
+  /mongoose-paginate-v2@1.7.4:
+    resolution: {integrity: sha512-2oUOH/2hrtW0Ki5dJbwxsLBeVafVBfE84QiJsr7tYBQVxUk1v5usDvRa29LpBtANMpBe7eeLUTI2tyjLSk3/Yg==}
+    engines: {node: '>=4.0.0'}
     dev: false
 
   /mongoose@7.5.3:
