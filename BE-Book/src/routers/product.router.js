@@ -1,5 +1,5 @@
 import express from 'express'
-import { createProduct, deleteFakeProduct, getAllProduct, getDetailProduct, restoreProduct, updateProduct } from '../controllers/product.controller.js';
+import { createProduct, deleteFakeProduct, deleteRealProduct, getAllProduct, getDetailProduct, restoreProduct, updateProduct } from '../controllers/product.controller.js';
 const routerProduct = express.Router()
 
 routerProduct.get('/products', getAllProduct);
@@ -8,6 +8,6 @@ routerProduct.patch('/products/:id', updateProduct);
 routerProduct.post('/products/', createProduct);
 routerProduct.patch('/deleteFakeProduct/:id', deleteFakeProduct);
 routerProduct.patch('/restoreProduct/:id', restoreProduct);
-// routerProduct.delete('/:id', remove);
+routerProduct.delete('/products/:id', deleteRealProduct);
 
 export default routerProduct
