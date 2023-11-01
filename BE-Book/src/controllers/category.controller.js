@@ -1,6 +1,6 @@
 import Category from "../models/category.model.js";
 import { categoryValidation } from "../validations/category.validation.js";
-
+import Product from '../models/product.model.js'
 export const getAllCate = async (req, res) => {
     try {
         const categories = await Category.find().populate("products");
@@ -93,6 +93,8 @@ export const updateCate = async function (req, res) {
     }
 };
 export const removeCate = async function (req, res) {
+    const categoryId = req.params.id
+    await Product.deleteMany({ categoryId })
     try {
         const category = await Category.findByIdAndDelete(req.params.id);
         return res.json({
