@@ -117,6 +117,12 @@ export const restoreProduct = async (req, res) => {
 
 // cập nhật sản phẩm
 export const updateProduct = async (req, res) => {
+    const { error } = productValidation.validate(req.body)
+        if (error) {
+            return res.status(400).json({
+                message: error.details[0].message
+            })
+        }
     try {
       const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
         new: true,

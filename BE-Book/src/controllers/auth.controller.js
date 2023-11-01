@@ -1,4 +1,4 @@
-import { signupValidation } from "../validations/auth.validation.js";
+import { signinValidation, signupValidation } from "../validations/auth.validation.js";
 import User from "../models/auth.model.js";
 import bcryptjs from 'bcryptjs'
 import jwt from 'jsonwebtoken';
@@ -28,6 +28,43 @@ export const signUp = async (req, res) => {
         return res.status(200).json({
             message: "Đăng kí thành công",
             data: user
+        })
+    } catch (error) {
+        return res.status(500).json({
+            message: "lỗi server"
+        })
+    }
+}
+export const signIn = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const { error } = signinValidation.validate(req.body)
+        if (error) {
+            return res.status(400).json({
+                message: error.details[0].message,
+                datas: []
+            })
+        }
+        const checkEmail = await User.findOne({ email })
+        if (!checkEmail) {
+            return res.status(400).json({
+                message: "Email không tồn tại"
+            })
+        }
+        const checkPass = await bcryptjs.compare(password, checkEmail.password);
+        if (!checkPass) {
+            return res.status(400).json({
+                message: "Mật khẩu không chính xác"
+            })
+        }
+
+        const token = jwt.sign({
+            id: checkEmail.id
+        }, "svfpoly", { expiresIn: '1d' })
+        checkEmail.password = undefined
+        return res.status(200).json({
+            message: "Đăng nhập thành công",
+            datas: { ...checkEmail._doc, accessToken: token }
         })
     } catch (error) {
         return res.status(500).json({
