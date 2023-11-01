@@ -4,8 +4,9 @@ const productValidation = Joi.object({
     name: Joi.string().required().min(5),
     price: Joi.number().required(),
     author: Joi.string().required(), // tác giả
-    publishing: Joi.string().required(), // năm phát hành
+    publishing: Joi.string().required(), // nhà xuất bản
     quantity: Joi.number().required(),
+    categoryId: Joi.string().required(),
     images: Joi
         .array()
         .items(

@@ -1,8 +1,10 @@
-import Product from '../models/product.model.js'
 import productValidation from '../validations/product.validation.js';
+import Product from '../models/product.model.js'
+import Category from '../models/category.model.js'
+
 export const getAllProduct = async (req, res) => {
     try {
-        const products = await Product.find();
+        const products = await Product.find().populate('categoryId');
         if (products.length == 0) {
             return res.status(400).json({
                 message: "Không có sản phẩm nào"
@@ -21,7 +23,7 @@ export const getAllProduct = async (req, res) => {
 
 export const getDetailProduct = async (req, res) => {
     try {
-        const products = await Product.findById(req.params.id);
+        const products = await Product.findById(req.params.id).populate('categoryId');
         if (!products) {
             return res.status(400).json({
                 message: "Không tìm thấy sản phẩm"
@@ -40,13 +42,30 @@ export const getDetailProduct = async (req, res) => {
 
 export const createProduct = async (req, res) => {
     try {
-        const { error } = productValidation.validate(req.body)
+        const Data = req.body;
+        const category = Data.categoryId;
+        const { error } = productValidation.validate(Data, { abortEarly: false })
         if (error) {
             return res.status(400).json({
                 message: error.details[0].message
             })
         }
+        const existCategory = await Category.findById(category);
+        // console.log(existCategory);
+        if (!existCategory) {
+            return res.status(400).json({
+                message: "Danh mục không tồn tại hoặc không hợp lệ !"
+            });
+        }
         const product = await Product.create(req.body);
+        const addcate = await Category.findByIdAndUpdate(product.categoryId, {
+            $addToSet: { products: product._id }
+        });
+        if (!addcate) {
+            return res.status(400).json({
+                message: "Thêm danh mục cho sản phẩm không thành công !"
+            })
+        }
         console.log(product);
         if (!product) {
             return res.status(400).json({
@@ -118,21 +137,27 @@ export const restoreProduct = async (req, res) => {
 // cập nhật sản phẩm
 export const updateProduct = async (req, res) => {
     try {
-      const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
-        new: true,
-      });
-      if (!product) {
-        return res.status(404).json({
-          message: "Không tìm thấy sản phẩm",
+        const { error } = productValidation.validate(req.body)
+        if (error) {
+            return res.status(400).json({
+                message: error.details[0].message
+            })
+        }
+        const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
+            new: true,
         });
-      }
-      return res.status(200).json({
-        message: "Sản phẩm đã được cập nhật thành công",
-        data: product,
-      });
+        if (!product) {
+            return res.status(404).json({
+                message: "Không tìm thấy sản phẩm",
+            });
+        }
+        return res.status(200).json({
+            message: "Sản phẩm đã được cập nhật thành công",
+            data: product,
+        });
     } catch (error) {
-      return res.status(500).json({
-        message: error,
-      });
+        return res.status(500).json({
+            message: error,
+        });
     }
-  };
+};
