@@ -3,20 +3,28 @@ import Product from '../models/product.model.js'
 import Category from '../models/category.model.js'
 
 export const getAllProduct = async (req, res) => {
+    const { _sort = "createAt", _order = "asc", _limit = 10, _page = 1 } = req.query;
+    const options = {
+        page: _page,
+        limit: _limit,
+        sort: {
+            [_sort]: _order == "desc" ? -1 : 1,
+        },
+    };
     try {
-        const products = await Product.find().populate('categoryId');
-        if (products.length == 0) {
+        const { docs, totalDocs, totalPages } = await Product.paginate({}, options);
+        // const products = await Product.find().populate('categoryId');
+        if (docs.length === 0) {
             return res.status(400).json({
                 message: "Không có sản phẩm nào"
             })
         }
         return res.status(200).json({
-            message: " tìm sản phẩm thành công",
-            data: products
+            docs: docs, totalDocs, totalPages, _limit, _page
         })
     } catch (error) {
         res.status(500).json({
-            message: "Lỗi server"
+            message: error.message
         })
     }
 }
@@ -35,7 +43,7 @@ export const getDetailProduct = async (req, res) => {
         })
     } catch (error) {
         res.status(500).json({
-            message: "Lỗi server"
+            message: error.message
         })
     }
 }
@@ -78,7 +86,7 @@ export const createProduct = async (req, res) => {
         })
     } catch (error) {
         res.status(500).json({
-            message: "Lỗi server"
+            message: error.message
         })
     }
 }
@@ -92,7 +100,7 @@ export const deleteRealProduct = async (req, res) => {
         });
     } catch (error) {
         return res.status(500).json({
-            message: error,
+            message: error.message
         });
     }
 };
@@ -157,7 +165,7 @@ export const updateProduct = async (req, res) => {
         });
     } catch (error) {
         return res.status(500).json({
-            message: error,
+            message: error.message
         });
     }
 };
