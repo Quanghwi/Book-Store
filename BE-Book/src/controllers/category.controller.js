@@ -1,18 +1,29 @@
 import Category from "../models/category.model.js";
 import { categoryValidation } from "../validations/category.validation.js";
 import Product from '../models/product.model.js'
+
 export const getAllCate = async (req, res) => {
+    const { _sort = "createAt", _order = "asc", _limit = 10, _page = 1 } = req.query;
+    const options = {
+        page: _page,
+        limit: _limit,
+        sort: {
+            [_sort]: _order == "desc" ? -1 : 1,
+        },
+        populate: {
+            path: 'products',
+            select: '-categoryId', // loại bỏ trường categoryId trong thông tin sản phẩm
+        }
+    };
     try {
-        const categories = await Category.find().populate("products");
-        if (categories.length === 0) {
+        const { docs, totalDocs, totalPages } = await Category.paginate({}, options);
+        if (docs.length === 0) {
             return res.status(200).json({
                 message: "Không có category nào",
-                data: categories,
             });
         }
         return res.status(200).json({
-            message: "Lấy danh sách thành công",
-            datas: [...categories],
+            docs: docs, totalDocs, totalPages, _limit, _page
         });
     } catch (error) {
         return res.status(400).json({
@@ -28,7 +39,6 @@ export const getDetailCate = async function (req, res) {
         if (!category) {
             return res.json({
                 message: "Không có category nào",
-                datas: category,
             });
         }
         return res.json({
@@ -52,13 +62,12 @@ export const createCate = async function (req, res) {
         const category = await Category.create(req.body);
         if (!category) {
             return res.json({
-                message: "Thêm category không thành công!",
-                datas: category,
+                message: "Thêm danh mục thất bại!",
             });
         }
         return res.json({
-            message: "Thêm category thành công",
-            data: [category],
+            message: "Thêm danh mục thành công!",
+            data,
         });
     } catch (error) {
         return res.status(400).json({
