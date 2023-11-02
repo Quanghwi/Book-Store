@@ -1,6 +1,7 @@
 import Joi from "joi";
 
 const productValidation = Joi.object({
+    // id: Joi.string(),
     name: Joi.string().required().min(5),
     price: Joi.number().required(),
     author: Joi.string().required(), // tác giả
