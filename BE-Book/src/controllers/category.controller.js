@@ -37,14 +37,11 @@ export const getDetailCate = async function (req, res) {
             "products"
         );
         if (!category) {
-            return res.json({
+            return res.status(200).json({
                 message: "Không có category nào",
             });
         }
-        return res.json({
-            message: "Lay category thành công!",
-            datas: category,
-        });
+        return res.status(200).json({ data: category, });
     } catch (error) {
         return res.status(400).json({
             message: error,
