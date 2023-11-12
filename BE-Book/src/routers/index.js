@@ -4,6 +4,7 @@ import routerAuth from './auth.router.js';
 import routerCategory from './category.router.js';
 import routerUpload from './uploadfiles.router.js';
 import routerCoupon from './coupon.router.js';
+import routerCart from './cart.router.js';
 
 const router = express.Router();
 
@@ -12,5 +13,6 @@ router.use('/auth', routerAuth);
 router.use('', routerCategory);
 router.use('', routerUpload);
 router.use('', routerCoupon);
+router.use('', routerCart);
 
 export default router
