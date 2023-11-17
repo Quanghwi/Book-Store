@@ -17,6 +17,7 @@ import { ManagerCategoryComponent } from './component/pages/admin/Category/manag
 import { HomePageComponent } from './component/pages/client/home-page/home-page.component';
 import { DetailProductComponent } from './component/pages/client/detail-product/detail-product.component';
 import { ProductPageComponent } from './component/pages/client/product-page/product-page.component';
+import { DashBoardComponent } from './component/pages/admin/dash-board/dash-board.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ProductPageComponent } from './component/pages/client/product-page/prod
     HomePageComponent,
     DetailProductComponent,
     ProductPageComponent,
+    DashBoardComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

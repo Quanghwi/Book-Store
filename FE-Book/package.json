@@ -10,7 +10,8 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint --fix src --ext ts,tsx",
     "prettier": "prettier --check \"src/**/(*.tsx|*.ts|*.css|*.scss)\"",
-    "format:fix": "prettier --write \"src/**/(*.tsx|*.ts|*.css|*.scss)\""
+    "format:fix": "prettier --write \"src/**/(*.tsx|*.ts|*.css|*.scss)\"",
+    "fix:all": "concurrently \"npm run format:fix\" \"npm run lint:fix\""
   },
   "private": true,
   "dependencies": {
@@ -22,6 +23,7 @@
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
+    "concurrently": "^8.2.2",
     "eslint": "^8.52.0",
     "prettier": "^3.0.3",
     "rxjs": "~7.8.0",
