@@ -1,1 +1,16 @@
-<p>client-layout works!</p>
+<div class="container-fluid">
+  <div class="">
+    <ul>
+      <li class="d-inline-block m-3"><a routerLink="">Trang chủ</a></li>
+      <li class="d-inline-block m-3"><a routerLink="products">Sản phẩm</a></li>
+      <li class="d-inline-block m-3">
+        <a routerLink="products/2">Chi tiết</a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-8">
+    <main>
+      <router-outlet />
+    </main>
+  </div>
+</div>

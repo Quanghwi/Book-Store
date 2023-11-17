@@ -1,2 +1,1 @@
-export interface IProduct {
-}
+export interface IProduct {}
