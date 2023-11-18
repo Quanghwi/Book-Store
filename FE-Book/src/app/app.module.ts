@@ -23,6 +23,8 @@ import { ProductPageComponent } from './component/pages/client/product-page/prod
 import { DashBoardComponent } from './component/pages/admin/dash-board/dash-board.component';
 import { ProductItemComponent } from './component/pages/admin/Products/product-item/product-item.component';
 import { TruncatePipe } from './component/utils/truncate.pipe';
+import { SigninComponent } from './component/pages/auth/signin/signin.component';
+import { SignupComponent } from './component/pages/auth/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { TruncatePipe } from './component/utils/truncate.pipe';
     DashBoardComponent,
     ProductItemComponent,
     TruncatePipe,
+    SigninComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
