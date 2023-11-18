@@ -30,9 +30,8 @@ export class ManagerProductsComponent {
     this.status = !this.status;
   }
   removeItem(_id: any) {
-    const isConfirmed = window.confirm(
-      'Bạn có chắc chắn muốn xóa sản phẩm này?'
-    );
+    const product = this.products.find(item => item._id == _id)
+    const isConfirmed = confirm(`Bạn có muốn xóa sản phẩm ${product?.name} không ?`)
     if (isConfirmed) {
       this.productService.deleteProduct(_id).subscribe(
         () => {
