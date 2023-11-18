@@ -8,6 +8,7 @@ export interface IProduct {
   quantity: number;
   images: any;
   price: number;
+  categoryId: string
   description: string;
   is_deleted?: boolean;
   is_active?: boolean;

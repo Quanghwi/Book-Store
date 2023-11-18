@@ -37,10 +37,7 @@ export const getDetailProduct = async (req, res) => {
                 message: "Không tìm thấy sản phẩm"
             })
         }
-        return res.status(200).json({
-            message: " tìm sản phẩm thành công",
-            data: products
-        })
+        return res.status(200).json({ products })
     } catch (error) {
         res.status(500).json({
             message: error.message
