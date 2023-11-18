@@ -9,8 +9,12 @@ import { DashBoardComponent } from './component/pages/admin/dash-board/dash-boar
 import { ManagerProductsComponent } from './component/pages/admin/Products/manager-products/manager-products.component';
 import { AddProductComponent } from './component/pages/admin/Products/add-product/add-product.component';
 import { UpdateProductComponent } from './component/pages/admin/Products/update-product/update-product.component';
+import { SigninComponent } from './component/pages/auth/signin/signin.component';
+import { SignupComponent } from './component/pages/auth/signup/signup.component';
 
 const routes: Routes = [
+  { path: 'signin', component: SigninComponent },
+  { path: 'signup', component: SignupComponent },
   {
     path: '',
     component: ClientLayoutComponent,
