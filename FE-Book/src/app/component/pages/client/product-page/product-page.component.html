@@ -1,5 +1,5 @@
 <section style="background-color: #eee">
-  <div class="text-center container py-5">
+  <div class="text-center container py-3">
     <div class="tiller"><h1>Sản Phẩm</h1></div>
     <div class="row">
       <div class="col-md-4" *ngFor="let product of products">
@@ -32,7 +32,7 @@
                   <div class="card-body">
                     <h3 class="card-title mb-3">{{ product.name }}</h3>
                     <p>{{ product.description | truncate: 20 }}</p>
-                    <h6 class="mb-3">{{ product.price }}</h6>
+                    <h6 class="mb-3 text-danger">{{ product.price }}</h6>
                   </div>
                 </div>
               </div>
