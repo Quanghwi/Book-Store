@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+
 import { AppComponent } from './app.component';
 import { ClientLayoutComponent } from './component/layouts/client-layout/client-layout.component';
 import { AdminLayoutComponent } from './component/layouts/admin-layout/admin-layout.component';
@@ -18,6 +20,8 @@ import { HomePageComponent } from './component/pages/client/home-page/home-page.
 import { DetailProductComponent } from './component/pages/client/detail-product/detail-product.component';
 import { ProductPageComponent } from './component/pages/client/product-page/product-page.component';
 import { DashBoardComponent } from './component/pages/admin/dash-board/dash-board.component';
+import { ProductItemComponent } from './component/pages/admin/Products/product-item/product-item.component';
+import { TruncatePipe } from './component/utils/truncate.pipe';
 
 @NgModule({
   declarations: [
@@ -37,8 +41,10 @@ import { DashBoardComponent } from './component/pages/admin/dash-board/dash-boar
     DetailProductComponent,
     ProductPageComponent,
     DashBoardComponent,
+    ProductItemComponent,
+    TruncatePipe
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule,ToastrModule.forRoot() ],
   providers: [],
   bootstrap: [AppComponent],
 })
