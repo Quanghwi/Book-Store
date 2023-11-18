@@ -5,10 +5,10 @@ const routerProduct = express.Router()
 
 routerProduct.get('/products', getAllProduct);
 routerProduct.get('/products/:id', getDetailProduct);
-routerProduct.patch('/products/:id', checkPermission, updateProduct);
-routerProduct.post('/products/', checkPermission, createProduct);
-routerProduct.patch('/deleteFakeProduct/:id', checkPermission, deleteFakeProduct);
-routerProduct.patch('/restoreProduct/:id', checkPermission, restoreProduct);
-routerProduct.delete('/products/:id', checkPermission, deleteRealProduct);
+routerProduct.patch('/products/:id', updateProduct);
+routerProduct.post('/products/', createProduct);
+routerProduct.patch('/deleteFakeProduct/:id', deleteFakeProduct);
+routerProduct.patch('/restoreProduct/:id', restoreProduct);
+routerProduct.delete('/products/:id', deleteRealProduct);
 
 export default routerProduct
