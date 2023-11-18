@@ -4,9 +4,9 @@
 <td>{{ product.price }}</td>
 <td [width]="370">{{ product.description | truncate: 20 }}</td>
 <td>
-  <button class="btn btn-primary me-2" (click)="removeItem(product._id)">
-    Update
-  </button>
+    <a class="me-2" [routerLink]="['/manager/products',product._id,'update']">
+        <button class="btn btn-primary ms-2"> Update </button>
+      </a>
   <button class="btn btn-danger" (click)="removeItem(product._id)">
     Remove
   </button>

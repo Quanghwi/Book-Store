@@ -6,13 +6,13 @@ export interface IProduct {
   author: string;
   publishing: string;
   quantity: number;
-  images: IImage[];
+  images: any;
   price: number;
   description: string;
-  is_deleted: boolean;
-  is_active: boolean;
-  createdAt: string;
-  updatedAt: string;
+  is_deleted?: boolean;
+  is_active?: boolean;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface IProductDocs {

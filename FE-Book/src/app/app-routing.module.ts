@@ -29,7 +29,7 @@ const routes: Routes = [
         component: ProductPageComponent,
       },
       {
-        path: 'products/:id',
+        path: 'products/:_id',
         component: DetailProductComponent,
       },
     ],
@@ -46,7 +46,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashBoardComponent },
       { path: 'products', component: ManagerProductsComponent },
       { path: 'addProduct', component: AddProductComponent },
-      { path: 'products/:id/update', component: UpdateProductComponent },
+      { path: 'products/:_id/update', component: UpdateProductComponent },
     ],
   },
 ];

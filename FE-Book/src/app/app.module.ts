@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ClientLayoutComponent } from './component/layouts/client-layout/client-layout.component';
@@ -42,9 +43,16 @@ import { TruncatePipe } from './component/utils/truncate.pipe';
     ProductPageComponent,
     DashBoardComponent,
     ProductItemComponent,
-    TruncatePipe
+    TruncatePipe,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule,ToastrModule.forRoot() ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ToastrModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

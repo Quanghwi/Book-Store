@@ -12,9 +12,18 @@ export class ProductService {
   getAllProducts(): Observable<IProductDocs> {
     return this.http.get<IProductDocs>(`${environment.backendUrl}/products`);
   }
-  deleteProduct(id: number | string): Observable<IProduct> {
+  getProduct(_id: any): Observable<IProduct> {
+    return this.http.get<IProduct>(`http://localhost:8000/api/products/` + _id);
+  }
+  deleteProduct(_id: number | string): Observable<IProduct> {
     return this.http.delete<IProduct>(
-      `${environment.backendUrl}/products/` + id
+      `${environment.backendUrl}/products/` + _id
+    );
+  }
+  updateProduct(product: IProduct): Observable<IProduct> {
+    return this.http.patch<IProduct>(
+      `http://localhost:8000/api/products/${product._id}`,
+      product
     );
   }
 }
