@@ -12,8 +12,8 @@ export class ProductService {
   getAllProducts(): Observable<IProductDocs> {
     return this.http.get<IProductDocs>(`${environment.backendUrl}/products`);
   }
-  getProduct(_id: any): Observable<IProduct> {
-    return this.http.get<IProduct>(`http://localhost:8000/api/products/` + _id);
+  getProduct(id: any): Observable<IProduct> {
+    return this.http.get<IProduct>(`http://localhost:8000/api/products/` + id);
   }
   deleteProduct(_id: number | string): Observable<IProduct> {
     return this.http.delete<IProduct>(
