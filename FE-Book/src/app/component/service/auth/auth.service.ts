@@ -13,4 +13,10 @@ export class AuthService {
   signup(user: IUser): Observable<IUser> {
     return this.http.post<IUser>(this.API_URL + '/signup', user);
   }
+  signin(user: any): Observable<any> {
+    return this.http.post(`${this.API_URL}/signin`, user)
+  }
+  isAuthenticated(): any {
+    return JSON.parse(localStorage.getItem('credential')!) || {};
+  }
 }
