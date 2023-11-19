@@ -43,6 +43,16 @@
         />
       </div>
       <div class="mb-3">
+        <label for="" class="form-label">Danh mục sản phấm</label>
+        <!-- <input type="text" class="form-control" formControlName="categoryId" placeholder="product catrgory"> -->
+        <select formControlName="categoryId" class="form-select">
+          <option value="">Chọn danh mục</option>
+          <option *ngFor="let cate of category" value="{{ cate._id }}">
+            {{ cate.name }}
+          </option>
+        </select>
+      </div>
+      <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Tác giả</label>
         <input
           type="text"

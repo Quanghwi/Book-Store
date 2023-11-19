@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { CategoryService } from './../../../../service/category/category.service';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ICategory } from 'src/app/component/interface/category';
 import { IProduct } from 'src/app/component/interface/product';
 import { ProductService } from 'src/app/component/service/product/product.service';
 @Component({
@@ -9,10 +11,18 @@ import { ProductService } from 'src/app/component/service/product/product.servic
   styleUrls: ['./add-product.component.css'],
 })
 export class AddProductComponent {
+  category: ICategory[] = [];
+  ngOnInit() {
+    this.categoryService.getAllCate().subscribe((data) => {
+      this.category = data.doccs;
+      console.log(data.datas);
+    });
+  }
   constructor(
     private formBuilder: FormBuilder,
     private service: ProductService,
-    private router: Router
+    private router: Router,
+    private categoryService: CategoryService
   ) {}
 
   // productForm = new FormGroup({
@@ -29,6 +39,7 @@ export class AddProductComponent {
     author: '',
     publishing: '',
     images: [''],
+    categoryId: [''],
   });
 
   AddProduct() {
@@ -42,6 +53,7 @@ export class AddProductComponent {
         publishing: this.productForm.value.publishing || '',
         author: this.productForm.value.author || '',
         images: this.productForm.value.images || '',
+        categoryId: this.productForm.value.categoryId || '',
       };
       this.service.addProduct(product).subscribe((data) => {
         console.log(data);

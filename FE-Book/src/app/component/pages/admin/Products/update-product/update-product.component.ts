@@ -3,6 +3,8 @@ import { IProduct } from 'src/app/component/interface/product';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/component/service/product/product.service';
+import { ICategory } from 'src/app/component/interface/category';
+import { CategoryService } from 'src/app/component/service/category/category.service';
 @Component({
   selector: 'app-update-product',
   templateUrl: './update-product.component.html',
@@ -10,6 +12,7 @@ import { ProductService } from 'src/app/component/service/product/product.servic
 })
 export class UpdateProductComponent {
   product!: IProduct;
+  category: ICategory[] = [];
   productForm = this.formBuilder.group({
     name: [''],
     price: 0,
@@ -18,26 +21,31 @@ export class UpdateProductComponent {
     author: '',
     publishing: '',
     images: [''],
+    categoryId: '',
   });
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private categoryService: CategoryService
   ) {
     this.route.paramMap.subscribe((params) => {
-      const _id = params.get('_id');
-      console.log(_id);
-      this.productService.getProduct(_id).subscribe((product) => {
-        this.product = product;
-        this.productForm.patchValue({
-          name: product.name,
-          price: product.price,
-          quantity: product.quantity,
-          description: product.description,
-          publishing: product.publishing,
-          author: product.author,
-          images: product.images[0].url,
+      const id = params.get('id');
+      console.log(id);
+
+      this.productService.getProduct(id).subscribe((data) => {
+        this.product = data;
+        console.log(this.product);
+        this.categoryService.getAllCate().subscribe((data) => {
+          this.category = data.datas;
+          this.productForm.patchValue({
+            name: this.product.name,
+            price: this.product.price,
+            description: this.product.description,
+            images: this.product.images[0].url,
+            categoryId: this.product.categoryId,
+          });
         });
       });
     });
@@ -54,6 +62,7 @@ export class UpdateProductComponent {
         publishing: this.productForm.value.publishing || '',
         author: this.productForm.value.author || '',
         images: this.productForm.value.images || '',
+        categoryId: this.productForm.value.categoryId || "",
       };
 
       this.productService.updateProduct(product).subscribe(
