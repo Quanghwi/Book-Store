@@ -20,6 +20,9 @@ export class SigninComponent {
     if (this.formSignin.valid) {
       this.auth.signin(this.formSignin.value).subscribe(data => {
         localStorage.setItem('credential', JSON.stringify(data))
+        const role = data?.docs?.role
+        console.log(role);
+        this.auth.login(role)
       })
     }
   }
