@@ -26,6 +26,7 @@ import { ProductItemComponent } from './component/pages/admin/Products/product-i
 import { TruncatePipe } from './component/utils/truncate.pipe';
 import { SigninComponent } from './component/pages/auth/signin/signin.component';
 import { SignupComponent } from './component/pages/auth/signup/signup.component';
+import { CatrgoryItemComponent } from './component/pages/admin/Category/catrgory-item/catrgory-item.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { SignupComponent } from './component/pages/auth/signup/signup.component'
     TruncatePipe,
     SigninComponent,
     SignupComponent,
+    CatrgoryItemComponent,
   ],
   imports: [
     BrowserModule,
