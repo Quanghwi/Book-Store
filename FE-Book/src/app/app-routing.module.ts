@@ -11,6 +11,9 @@ import { AddProductComponent } from './component/pages/admin/Products/add-produc
 import { UpdateProductComponent } from './component/pages/admin/Products/update-product/update-product.component';
 import { SigninComponent } from './component/pages/auth/signin/signin.component';
 import { SignupComponent } from './component/pages/auth/signup/signup.component';
+import { ManagerCategoryComponent } from './component/pages/admin/Category/manager-category/manager-category.component';
+import { AddCategoryComponent } from './component/pages/admin/Category/add-category/add-category.component';
+import { UpdateCategoryComponent } from './component/pages/admin/Category/update-category/update-category.component';
 
 const routes: Routes = [
   { path: 'signin', component: SigninComponent },
@@ -51,6 +54,10 @@ const routes: Routes = [
       { path: 'products', component: ManagerProductsComponent },
       { path: 'addProduct', component: AddProductComponent },
       { path: 'products/:_id/update', component: UpdateProductComponent },
+
+      { path: 'categories', component: ManagerCategoryComponent },
+      { path: 'addCategory', component: AddCategoryComponent },
+      { path: 'category/:_id/update', component: UpdateCategoryComponent },
     ],
   },
 ];
