@@ -21,9 +21,13 @@ export class SigninComponent {
       this.auth.signin(this.formSignin.value).subscribe(data => {
         localStorage.setItem('credential', JSON.stringify(data))
         const role = data?.docs?.role
-        console.log(role);
+        console.log(data);
         this.auth.login(role)
       })
     }
   }
+  isLoading = false;
+  toggleLoading() {
+    this.isLoading = true
+   }
 }

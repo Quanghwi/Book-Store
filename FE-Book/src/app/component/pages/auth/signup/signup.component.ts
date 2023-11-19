@@ -50,4 +50,8 @@ export class SignupComponent {
       });
     }
   }
+  isLoading = false;
+  toggleLoading() {
+    this.isLoading = true;
+  }
 }

@@ -5,6 +5,7 @@
     <div class="container" id="container">
       <div class="form-container sign-in-container">
         <form [formGroup]="formSignin" (ngSubmit)="onHandleSubmit()">
+          <h1>Sign in</h1>
           <input type="text" placeholder="Email" formControlName="email" />
           <div
             class="text-danger"
@@ -41,7 +42,15 @@
           >
             Mật khẩu không được để trống
           </div>
-          <button>Đăng Nhập</button>
+          <button (click)="toggleLoading()">
+            <img
+              *ngIf="isLoading"
+              style="width: 18px"
+              src="../../../../images/loading-gif.gif"
+              alt=""
+            />
+            Đăng Nhập
+          </button>
         </form>
       </div>
 
