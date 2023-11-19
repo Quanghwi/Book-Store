@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 import { AppComponent } from './app.component';
 import { ClientLayoutComponent } from './component/layouts/client-layout/client-layout.component';
@@ -56,6 +57,7 @@ import { SignupComponent } from './component/pages/auth/signup/signup.component'
     ToastrModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
+    CarouselModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],
