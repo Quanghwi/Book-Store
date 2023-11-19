@@ -11,4 +11,7 @@ export class CategoryService {
   getAllCate(): Observable<any> {
     return this.http.get<any>('http://localhost:8000/api/categories');
   }
+  addCategory(category: any) {
+    return this.http.post('http://localhost:8000/api/categories', category);
+  }
 }
