@@ -1,9 +1,16 @@
-<p>add-category works!</p>
-<h2>Thêm danh mục</h2>
+<div class="details my-4">
+  <h1>Thêm danh mục</h1>
+  <div class="detail-info">
+    <div class="mb-3">
+      <label for="name">Tên danh mục:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        [(ngModel)]="category.name"
+      />
+    </div>
+  </div>
 
-<div>
-  <label for="name">Tên danh mục:</label>
-  <input type="text" id="name" [(ngModel)]="category.name">
+  <button class="btn btn-primary" (click)="addCategory()">Thêm</button>
 </div>
-
-<button (click)="addCategory()">Thêm</button>
