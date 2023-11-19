@@ -18,7 +18,7 @@ export class AddCategoryComponent {
       .subscribe(
         response => {
           console.log('Danh mục đã được thêm thành công', response);
-          this.router.navigate(['/admin']);
+          this.router.navigate(['/manager/categories']);
           // Xử lý thông báo thành công hoặc chuyển hướng đến trang danh mục đã thêm
         },
         error => {
